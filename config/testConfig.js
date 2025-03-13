@@ -1,41 +1,45 @@
 export const testConfig = {
     smoke: {
+        executor: 'constant-vus',
         vus: 1,
         duration: '1s',
     },
     load: {
+        executor: 'ramping-vus',
         stages: [
-            { duration: '2m', target: 10 }, // ramp-up to 10 users
-            { duration: '3h56m', target: 10 }, // stay at 10 users for ~4 hours
-            { duration: '2m', target: 0 }, // ramp-down to 0 users
+            { duration: '5m', target: 1000 }, // Ramp-up to 1000 users in 5 minutes
+            { duration: '10m', target: 1000 }, // Steady-state load for 10 minutes
+            { duration: '5m', target: 0 }, // Ramp-down
         ],
     },
     stress: {
+        executor: 'ramping-vus',
         stages: [
-            { duration: '2m', target: 100 }, // ramp-up to 100 users
-            { duration: '5m', target: 100 }, // stay at 100 users for 5 minutes
-            { duration: '2m', target: 200 }, // ramp-up to 200 users
-            { duration: '5m', target: 200 }, // stay at 200 users for 5 minutes
-            { duration: '2m', target: 300 }, // ramp-up to 300 users
-            { duration: '5m', target: 300 }, // stay at 300 users for 5 minutes
-            { duration: '2m', target: 0 }, // ramp-down to 0 users
+            { duration: '2m', target: 500 },  // Normal load
+            { duration: '3m', target: 2000 }, // Ramp-up to 2000 users
+            { duration: '5m', target: 5000 }, // Peak stress at 5000 users
+            { duration: '2m', target: 0 },    // Ramp-down
         ],
     },
     spike: {
+        executor: 'ramping-vus',
         stages: [
-            { duration: '10s', target: 100 }, // spike to 100 users
-            { duration: '1m', target: 100 }, // stay at 100 users for 1 minute
-            { duration: '10s', target: 0 }, // ramp-down to 0 users
+            { duration: '30s', target: 100 },  // Normal traffic
+            { duration: '10s', target: 5000 }, // Instant spike to 5000 users
+            { duration: '5m', target: 5000 },  // Sustained high load
+            { duration: '1m', target: 100 },   // Drop back to normal
         ],
     },
     soak: {
+        executor: 'ramping-vus',
         stages: [
-            { duration: '2m', target: 10 }, // ramp-up to 10 users
-            { duration: '3h56m', target: 10 }, // stay at 10 users for ~4 hours
-            { duration: '2m', target: 0 }, // ramp-down to 0 users
+            { duration: '10m', target: 500 },  // Ramp-up
+            { duration: '4h', target: 500 },   // Sustained load for 4 hours
+            { duration: '10m', target: 0 },    // Ramp-down
         ],
     },
-    defalt: {
+    default: {
+        executor: 'constant-vus',
         vus: 1,
         duration: '1s',
     },
