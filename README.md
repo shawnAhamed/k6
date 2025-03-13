@@ -70,3 +70,6 @@ The test configurations are defined in `config/testConfig.js`. Each test type ha
     ```
 
 
+## Performance Report
+
+![Performance Report](./reports/summary.html)
