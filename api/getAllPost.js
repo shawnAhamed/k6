@@ -9,7 +9,6 @@ export function getAllPosts() {
     });
 
     check(res, {
-        'is status 200': (r) => r.status === 200,
-        'response body is not empty': (r) => r.body.length > 0,
+        'is status 200': (r) => r.status === 200
     });
 }

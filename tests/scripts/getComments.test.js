@@ -1,6 +1,6 @@
 import { getComments } from '../../api/getComments.js';
 
-function getComments() {
+export function getCommentsTest() {
     // ...existing code...
     getComments();
 }

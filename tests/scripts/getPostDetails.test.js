@@ -1,11 +1,6 @@
 import { getPostDetails } from '../../api/getPostDetails.js';
 
-function getPostDetails() {
-    // ...existing code...
+export function getPostDetailsTest() {
     getPostDetails();
 }
 
-// Call the getPostDetails function
-
-
-export { getPostDetails };
